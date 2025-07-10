@@ -1,0 +1,48 @@
+{
+  "name": "legal_assi",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test-gemini": "node test-gemini.js",
+    "test-gemini-fixed": "node test-gemini-fixed.js",
+    "test-razorpay": "node test-razorpay.js",
+    "test-lawyer-matching": "node test-lawyer-matching.js",
+    "test-firebase": "node test-firebase.js",
+    "test-complete": "node test-complete.js",
+    "test-import": "node test-import.js"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.21.0",
+    "@langchain/core": "^0.1.52",
+    "@langchain/google-genai": "^0.0.26",
+    "@types/node": "^20.11.24",
+    "axios": "^1.6.8",
+    "dotenv": "^16.3.1",
+    "faiss-node": "^0.5.1",
+    "firebase": "^11.6.0",
+    "formidable": "^3.5.1",
+    "langchain": "^0.1.30",
+    "lucide-react": "^0.344.0",
+    "multer": "^1.4.5-lts.1",
+    "next": "15.2.4",
+    "pdf-parse": "^1.1.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-dropzone": "^14.2.3",
+    "react-firebase-hooks": "^5.1.1",
+    "razorpay": "^2.9.2",
+    "sharp": "^0.33.2",
+    "tesseract.js": "^5.0.4"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "eslint": "^9",
+    "eslint-config-next": "15.2.4",
+    "tailwindcss": "^4"
+  }
+}

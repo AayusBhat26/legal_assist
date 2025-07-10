@@ -1,0 +1,217 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# ===========================================
+# DEVELOPMENT & TESTING FILES (NOT FOR DEPLOYMENT)
+# ===========================================
+setup.bat
+# Test Scripts
+test-*.js
+*test*.js
+test-gemini.js
+test-gemini-fixed.js
+test-razorpay.js
+test-lawyer-matching.js
+test-firebase.js
+test-complete.js
+test-import.js
+test-lawyers-count.js
+check-git-status.js
+
+# Documentation Files (Keep only essential docs)
+*.md
+!README.md
+GEMINI_404_FIX.md
+FIREBASE_FIX.md
+COMPLETE_FIX.md
+LAWYER_EXPANSION_COMPLETE.md
+README_NEW.md
+README_PRODUCTION.md
+DEPLOYMENT_READY.md
+*_FIX.md
+*_COMPLETE.md
+TROUBLESHOOTING*.md
+SETUP*.md
+
+# Backup & Temporary Files
+*.backup
+*.bak
+*.tmp
+*.temp
+*~
+.#*
+#*#
+*.swp
+*.swo
+*conflicted*
+
+# IDE & Editor Files
+.vscode/
+.idea/
+*.sublime-*
+.atom/
+*.code-workspace
+
+# OS Generated Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.lnk
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# nyc test coverage
+.nyc_output
+
+# Grunt intermediate storage
+.grunt
+
+# Bower dependency directory
+bower_components
+
+# node-waf configuration
+.lock-wscript
+
+# Compiled binary addons
+build/Release
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# parcel-bundler cache
+.cache
+.parcel-cache
+
+# Next.js build output
+.next
+out
+
+# Nuxt.js build / generate output
+.nuxt
+dist
+
+# Gatsby files
+.cache/
+public
+
+# Storybook build outputs
+.out
+.storybook-out
+
+# Temporary folders
+tmp/
+temp/
+
+# ===========================================
+# KEEP THESE ESSENTIAL FILES FOR DEPLOYMENT
+# ===========================================
+# package.json - KEEP (required for dependencies)
+# package-lock.json - KEEP (lock file for exact versions)
+# next.config.mjs - KEEP (Next.js configuration)
+# tailwind.config.js - KEEP (if exists, for styling)
+# postcss.config.mjs - KEEP (PostCSS configuration)
+# jsconfig.json - KEEP (JavaScript configuration)
+# eslint.config.mjs - KEEP (linting rules)
+# README.md - KEEP (main documentation)
+# app/ - KEEP (main application code)
+# components/ - KEEP (React components)
+# lib/ - KEEP (utility libraries and data)
+# public/ - KEEP (static assets)
+# styles/ - KEEP (if exists, CSS files)
+
+# ===========================================
+# NOTES FOR DEPLOYMENT:
+# ===========================================
+# 1. Environment variables (.env.local) are ignored - configure separately in deployment
+# 2. Test files are ignored - not needed in production
+# 3. Documentation files are ignored - keep only essential docs
+# 4. Build artifacts (.next/, out/) are ignored - will be generated during deployment
+# 5. Dependencies (node_modules/) are ignored - will be installed during deployment
