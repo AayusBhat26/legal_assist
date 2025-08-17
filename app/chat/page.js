@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { auth } from '../../lib/firebaseClient'
 import { onAuthStateChanged } from 'firebase/auth'
-import { Upload, Send, FileText, Mic, MicOff } from 'lucide-react'
+import { Upload, Send, FileText, Mic, MicOff, Brain, MessageSquare, Users, ArrowRight } from 'lucide-react'
 import FileUpload from '../../components/FileUpload'
 
 export default function ChatPage() {
@@ -15,7 +15,7 @@ export default function ChatPage() {
     {
       id: 1,
       type: 'bot',
-      content: 'Hello! I\'m your AI legal assistant. I can help you understand Indian laws and connect you with qualified lawyers. How can I assist you today?',
+      content: 'Hello! I\'m your AI legal assistant, powered by advanced machine learning and comprehensive Indian legal knowledge. I can help you understand laws, analyze documents, and connect you with qualified lawyers. How can I assist you today?',
       timestamp: new Date()
     }
   ])
@@ -188,81 +188,101 @@ export default function ChatPage() {
   }
 
   return (
-    <div className="flex flex-col h-screen max-w-4xl mx-auto">
-      <div className="bg-slate-700 text-white p-4 shadow-lg">
-        <h1 className="text-xl font-bold">Legal Assistant Chat</h1>
-        <p className="text-sm text-slate-200 mt-1">
-          💬 Ask legal questions and get lawyer recommendations
-        </p>
-        {authError && (
-          <div className="bg-red-500 text-white p-2 rounded mt-2 text-sm">
-            Authentication Error: {authError}
+    <div className="flex flex-col h-screen max-w-6xl mx-auto bg-gray-50">
+      {/* Header */}
+      <div className="bg-white border-b border-gray-200 shadow-sm">
+        <div className="p-6">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <div className="w-12 h-12 bg-gradient-to-br from-slate-700 to-emerald-600 rounded-xl flex items-center justify-center">
+                <Brain className="text-white" size={24} />
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold text-slate-900">AI Legal Assistant</h1>
+                <p className="text-slate-600 flex items-center">
+                  <MessageSquare className="mr-1" size={14} />
+                  Powered by Advanced AI & Legal Knowledge Base
+                </p>
+              </div>
+            </div>
+            
+            <div className="hidden md:flex items-center space-x-4">
+              <div className="text-sm text-slate-600">
+                <span className="font-medium">50,000+</span> users trust our platform
+              </div>
+              <button 
+                onClick={() => router.push('/lawyers')}
+                className="flex items-center space-x-2 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-4 py-2 rounded-lg hover:from-emerald-600 hover:to-emerald-700 transition-all duration-200 font-medium"
+              >
+                <Users size={16} />
+                <span>Find Lawyers</span>
+                <ArrowRight size={16} />
+              </button>
+            </div>
           </div>
-        )}
-        {!user && !authError && (
-          <p className="text-sm text-slate-200 mt-1">
-            For case management and advanced features, please{' '}
-            <button 
-              onClick={() => router.push('/login')}
-              className="underline hover:text-white"
-            >
-              sign in
-            </button>
-          </p>
-        )}
+        </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      {/* Chat Messages */}
+      <div className="flex-1 overflow-y-auto p-6 space-y-6">
         {messages.map((message) => (
           <div
             key={message.id}
             className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
           >
             <div
-              className={`max-w-3xl p-4 rounded-lg ${
+              className={`max-w-4xl p-6 rounded-2xl shadow-sm ${
                 message.type === 'user'
-                  ? 'bg-slate-700 text-white'
-                  : 'bg-gray-100 text-gray-900'
+                  ? 'bg-gradient-to-r from-slate-700 to-slate-800 text-white'
+                  : 'bg-white text-slate-900 border border-gray-100'
               }`}
             >
-              <div className="text-sm">
+              <div className="text-base leading-relaxed">
                 {formatMessage(message.content)}
               </div>
               
               {message.relevantLaws && (
-                <div className="mt-3 p-3 bg-emerald-50 rounded border-l-4 border-emerald-400">
-                  <h4 className="font-semibold text-emerald-800 mb-2">Relevant Laws:</h4>
-                  <ul className="text-sm text-emerald-700">
+                <div className="mt-4 p-4 bg-gradient-to-r from-emerald-50 to-blue-50 rounded-xl border border-emerald-200">
+                  <h4 className="font-semibold text-emerald-800 mb-3 flex items-center">
+                    <FileText className="mr-2" size={16} />
+                    Relevant Laws & Regulations
+                  </h4>
+                  <ul className="text-sm text-emerald-700 space-y-1">
                     {message.relevantLaws.map((law, index) => (
-                      <li key={index} className="mb-1">• {law}</li>
+                      <li key={index} className="flex items-start">
+                        <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        {law}
+                      </li>
                     ))}
                   </ul>
                 </div>
               )}
 
               {message.suggestedLawyers && message.suggestedLawyers.length > 0 && (
-                <div className="mt-3 p-3 bg-blue-50 rounded border-l-4 border-blue-400">
-                  <h4 className="font-semibold text-blue-800 mb-2">
-                    🧑‍⚖️ Suggested Lawyers ({message.suggestedLawyers.length})
+                <div className="mt-4 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200">
+                  <h4 className="font-semibold text-blue-800 mb-3 flex items-center">
+                    <Users className="mr-2" size={16} />
+                    Recommended Lawyers ({message.suggestedLawyers.length})
                   </h4>
-                  <div className="space-y-2">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {message.suggestedLawyers.map((lawyer, index) => (
-                      <div key={index} className="text-sm bg-white p-2 rounded shadow-sm">
-                        <div className="font-medium text-blue-700">{lawyer.name}</div>
-                        <div className="text-blue-600 text-xs">
+                      <div key={index} className="bg-white p-4 rounded-lg shadow-sm border border-blue-100 hover:shadow-md transition-shadow">
+                        <div className="font-semibold text-blue-700 mb-1">{lawyer.name}</div>
+                        <div className="text-blue-600 text-sm mb-2">
                           {lawyer.specialization} • {lawyer.location}
                         </div>
-                        <div className="text-gray-600 text-xs mt-1">
+                        <div className="text-slate-600 text-sm mb-3">
                           {lawyer.experience} experience • ⭐ {lawyer.rating}/5
                         </div>
-                        <div className="text-gray-600 text-xs">
-                          Fee: {lawyer.consultationFee}
+                        <div className="text-slate-700 text-sm font-medium mb-3">
+                          Consultation Fee: {lawyer.consultationFee}
                         </div>
                         <button 
                           onClick={() => router.push(`/lawyers/${lawyer.id}`)}
-                          className="text-blue-600 hover:underline text-xs mt-1 inline-block"
+                          className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-2 px-3 rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all duration-200 text-sm font-medium flex items-center justify-center"
                         >
-                          View Profile & Contact →
+                          View Profile
+                          <ArrowRight className="ml-1" size={14} />
                         </button>
                       </div>
                     ))}
@@ -270,7 +290,7 @@ export default function ChatPage() {
                 </div>
               )}
               
-              <div className="text-xs opacity-70 mt-2">
+              <div className="text-xs text-slate-500 mt-3">
                 {message.timestamp.toLocaleTimeString()}
               </div>
             </div>
@@ -279,10 +299,10 @@ export default function ChatPage() {
         
         {isLoading && (
           <div className="flex justify-start">
-            <div className="bg-gray-100 text-gray-900 p-4 rounded-lg">
-              <div className="flex items-center space-x-2">
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-slate-600"></div>
-                <span>Analyzing your query...</span>
+            <div className="bg-white text-slate-900 p-6 rounded-2xl shadow-sm border border-gray-100">
+              <div className="flex items-center space-x-3">
+                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-emerald-600"></div>
+                <span className="text-slate-700">Analyzing your query with AI...</span>
               </div>
             </div>
           </div>
@@ -291,14 +311,15 @@ export default function ChatPage() {
         <div ref={messagesEndRef} />
       </div>
 
-      <div className="border-t bg-white p-4">
-        <form onSubmit={handleSubmit} className="flex items-end space-x-2">
+      {/* Input Area */}
+      <div className="bg-white border-t border-gray-200 p-6">
+        <form onSubmit={handleSubmit} className="flex items-end space-x-4">
           <div className="flex-1">
             <textarea
               value={inputMessage}
               onChange={(e) => setInputMessage(e.target.value)}
-              placeholder="Describe your legal question or situation..."
-              className="w-full p-3 border border-slate-300 rounded-lg resize-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
+              placeholder="Describe your legal question, situation, or upload a document for analysis..."
+              className="w-full p-4 border border-gray-300 rounded-xl resize-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-base"
               rows={3}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' && !e.shiftKey) {
@@ -309,11 +330,11 @@ export default function ChatPage() {
             />
           </div>
           
-          <div className="flex flex-col space-y-2">
+          <div className="flex flex-col space-y-3">
             <button
               type="button"
               onClick={() => setShowFileUpload(true)}
-              className="p-3 bg-slate-500 text-white rounded-lg hover:bg-slate-600 transition-colors"
+              className="p-4 bg-slate-100 text-slate-700 rounded-xl hover:bg-slate-200 transition-colors border border-slate-200"
               title="Upload Document"
             >
               <Upload size={20} />
@@ -322,10 +343,10 @@ export default function ChatPage() {
             <button
               type="button"
               onClick={isListening ? stopListening : startListening}
-              className={`p-3 rounded-lg transition-colors ${
+              className={`p-4 rounded-xl transition-all duration-200 border ${
                 isListening 
-                  ? 'bg-red-500 hover:bg-red-600 text-white' 
-                  : 'bg-emerald-500 hover:bg-emerald-600 text-white'
+                  ? 'bg-red-500 hover:bg-red-600 text-white border-red-500' 
+                  : 'bg-emerald-100 hover:bg-emerald-200 text-emerald-700 border-emerald-200'
               }`}
               title={isListening ? "Stop Recording" : "Start Voice Input"}
             >
@@ -335,7 +356,7 @@ export default function ChatPage() {
             <button
               type="submit"
               disabled={!inputMessage.trim() || isLoading}
-              className="p-3 bg-slate-700 text-white rounded-lg hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="p-4 bg-gradient-to-r from-slate-700 to-emerald-600 text-white rounded-xl hover:from-slate-800 hover:to-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-md hover:shadow-lg"
               title="Send Message"
             >
               <Send size={20} />
