@@ -64,6 +64,7 @@ check-git-status.js
 # Documentation Files (Keep only essential docs)
 *.md
 !README.md
+!PROJECT_SUMMARY.md
 GEMINI_404_FIX.md
 FIREBASE_FIX.md
 COMPLETE_FIX.md

@@ -22,7 +22,7 @@ export default function ConsultationBooking({ params }) {
       return
     }
     fetchLawyerDetails()
-  }, [params.id, user, loading])
+  }, [params.id, user, loading, router, fetchLawyerDetails])
 
   const fetchLawyerDetails = async () => {
     try {
@@ -275,7 +275,7 @@ export default function ConsultationBooking({ params }) {
               </h3>
               <p className="text-sm text-gray-600 mb-4">
                 In production, this would integrate with Razorpay or another payment gateway.
-                For demo purposes, clicking "Complete Payment" will confirm your booking.
+                For demo purposes, clicking &quot;Complete Payment&quot; will confirm your booking.
               </p>
             </div>
 

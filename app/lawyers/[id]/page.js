@@ -51,7 +51,7 @@ export default function LawyerProfile({ params }) {
     return (
       <div className="text-center py-12">
         <h1 className="text-2xl font-bold text-gray-900 mb-4">Lawyer Not Found</h1>
-        <p className="text-gray-600 mb-8">The lawyer profile you're looking for doesn't exist.</p>
+        <p className="text-gray-600 mb-8">The lawyer profile you&apos;re looking for doesn&apos;t exist.</p>
         <button
           onClick={() => router.push('/lawyers')}
           className="bg-slate-700 text-white px-6 py-2 rounded-md hover:bg-slate-800 transition-colors"

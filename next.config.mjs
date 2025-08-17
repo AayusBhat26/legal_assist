@@ -1,8 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    serverComponentsExternalPackages: ['pdf-parse', 'tesseract.js']
-  },
+  serverExternalPackages: ['pdf-parse', 'tesseract.js'],
   images: {
     domains: ['localhost'],
     dangerouslyAllowSVG: true,
@@ -28,12 +26,7 @@ const nextConfig = {
     
     return config
   },
-  // Enable API routes to handle larger file uploads
-  api: {
-    bodyParser: {
-      sizeLimit: '10mb',
-    },
-  },
+  // ...existing code...
 }
 
 export default nextConfig;

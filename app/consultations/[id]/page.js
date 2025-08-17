@@ -10,7 +10,7 @@ export default function ConsultationConfirmation({ params }) {
 
   useEffect(() => {
     fetchConsultationDetails()
-  }, [params.id])
+  }, [params.id, fetchConsultationDetails])
 
   const fetchConsultationDetails = async () => {
     try {
@@ -49,7 +49,7 @@ export default function ConsultationConfirmation({ params }) {
     return (
       <div className="text-center py-12">
         <h1 className="text-2xl font-bold text-gray-900 mb-4">Consultation Not Found</h1>
-        <p className="text-gray-600 mb-8">The consultation you're looking for doesn't exist.</p>
+        <p className="text-gray-600 mb-8">The consultation you&apos;re looking for doesn&apos;t exist.</p>
         <button
           onClick={() => router.push('/lawyers')}
           className="bg-slate-700 text-white px-6 py-2 rounded-md hover:bg-slate-800 transition-colors"
@@ -188,11 +188,11 @@ export default function ConsultationConfirmation({ params }) {
 
       {/* Next Steps */}
       <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 mb-8">
-        <h3 className="text-lg font-semibold text-yellow-900 mb-3">What's Next?</h3>
+        <h3 className="text-lg font-semibold text-yellow-900 mb-3">What&apos;s Next?</h3>
         <ul className="text-yellow-800 space-y-2">
           <li className="flex items-start">
             <span className="w-2 h-2 bg-yellow-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-            You'll receive a confirmation email with all details
+            You&apos;ll receive a confirmation email with all details
           </li>
           <li className="flex items-start">
             <span className="w-2 h-2 bg-yellow-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
